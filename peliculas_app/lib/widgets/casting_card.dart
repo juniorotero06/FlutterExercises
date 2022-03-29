@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:peliculas_app/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -69,7 +68,7 @@ class _CastCard extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             actor.name,
-            style: TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

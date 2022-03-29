@@ -69,6 +69,7 @@ class _MoviePoster extends StatelessWidget {
   const _MoviePoster(
       {Key? key, required this.movie, required this.scrollController})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -78,7 +79,7 @@ class _MoviePoster extends StatelessWidget {
         itemCount: movie.length,
         itemBuilder: (_, int index) {
           final mov = movie[index];
-
+          mov.heroId = "${mov.title}-$index-${mov.id}";
           return Container(
             width: 130,
             height: 200,
@@ -88,14 +89,17 @@ class _MoviePoster extends StatelessWidget {
                 GestureDetector(
                   onTap: () =>
                       Navigator.pushNamed(context, "details", arguments: mov),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: FadeInImage(
-                      placeholder: const AssetImage("assets/no-image.jpg"),
-                      image: NetworkImage(mov.fullPosterImg),
-                      width: 130,
-                      height: 180,
-                      fit: BoxFit.cover,
+                  child: Hero(
+                    tag: mov.heroId!,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: FadeInImage(
+                        placeholder: const AssetImage("assets/no-image.jpg"),
+                        image: NetworkImage(mov.fullPosterImg),
+                        width: 130,
+                        height: 180,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
